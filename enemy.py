@@ -4,7 +4,7 @@ import movabeObj
 import random
 
 class Enemy(movabeObj.Movable):
-    def __init__(self, speed, parts):
+    def __init__(self, speed, parts, hitboxPart, hitboxRadius):
         self.startingxcor = random.randint(-700, 700)
         self.startingycor = 400
         self.speed = speed
@@ -12,7 +12,7 @@ class Enemy(movabeObj.Movable):
         for part in parts:
             part.turtle.goto(part.xcor + self.startingxcor, part.ycor + self.startingycor)
 
-        movabeObj.Movable.__init__(self, parts)
+        movabeObj.Movable.__init__(self, parts, hitboxPart, hitboxRadius)
 
     def moveFrequency(self):
         modifier = 10 - self.speed
@@ -21,8 +21,9 @@ class Enemy(movabeObj.Movable):
 
 class Boomyzoomy(Enemy):
     def __init__(self):
+        hitboxPart = enemyPart.EnemyPart(4, 5.2, "yellow", 0, -124)
         parts = [
-           enemyPart.EnemyPart(4, 5.2, "yellow", 0, -124),
+           hitboxPart,
            enemyPart.EnemyPart(4, 1, "blue", 0, -61),
            enemyPart.EnemyPart(2, 1, "blue", -21, 0),
            enemyPart.EnemyPart(2, 1, "blue", 21, 0),
@@ -35,4 +36,4 @@ class Boomyzoomy(Enemy):
            enemyPart.EnemyPart(2, 2, "red", -31, -41),
            enemyPart.EnemyPart(2, 2, "red", -31, -41)
         ]
-        Enemy.__init__(self, 7, parts)
+        Enemy.__init__(self, 7, parts, hitboxPart, 5)

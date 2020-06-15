@@ -11,10 +11,8 @@ class Game:
                 self.checkCollision(enemy)
 
     def checkCollision(self, enemy):
-        for enemyPart in enemy.parts:
-            for part in self.player.parts:
-                if (enemyPart.turtle.distance(part.turtle) < 20):
-                    self.gameOver()
+        if (enemy.hitboxPart.turtle.distance(self.player.hitboxPart.turtle) < 20):
+            self.gameOver()
 
     def gameOver(self):
         pen = turtle.Turtle()

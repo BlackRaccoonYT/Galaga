@@ -1,8 +1,10 @@
 
 
 class Movable:
-    def __init__(self, parts):
+    def __init__(self, parts, hitboxPart, hitboxRadius = 20):
         self.parts = parts
+        self.hitboxPart = hitboxPart
+        self.hitboxRadius = hitboxRadius
 
     def left(self):
         for ppart in self.parts:
